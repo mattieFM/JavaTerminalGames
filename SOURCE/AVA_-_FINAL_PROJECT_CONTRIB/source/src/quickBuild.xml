@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project UNIXProject with libraries in sub-folder">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+    <!--define folder properties-->
+    <property name="dir.buildfile" value="."/>
+    <property name="dir.workspace" value="${dir.buildfile}/.."/>
+    <property name="dir.jarfile" value="${dir.buildfile}/build"/>
+    <target name="create_run_jar">
+        <jar destfile="${dir.jarfile}/beta.jar">
+            <manifest>
+                <attribute name="Main-Class" value="Tetris"/>
+                <attribute name="Class-Path" value=". beta_lib/jna-platform-5.13.0.jar beta_lib/jna-5.13.0.jar beta_lib/json-20231013.jar"/>
+            </manifest>
+            <fileset dir="${dir.buildfile}/bin"/>
+        </jar>
+        <delete dir="${dir.jarfile}/beta_lib"/>
+        <mkdir dir="${dir.jarfile}/beta_lib"/>
+        <copy file="${dir.buildfile}/src/biz/source_code/utils/jna-platform-5.13.0.jar" todir="${dir.jarfile}/beta_lib"/>
+        <copy file="${dir.buildfile}/src/biz/source_code/utils/jna-5.13.0.jar" todir="${dir.jarfile}/beta_lib"/>
+        <copy file="${dir.buildfile}/src/json-20231013.jar" todir="${dir.jarfile}/beta_lib"/>
+    </target>
+</project>
