@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"gameEngine","l":"Engine"}]
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"ryan","l":"Board"},{"p":"gameEngine","l":"BoardEntities"},{"p":"gameEngine","l":"BoardEntity"},{"p":"gameEngine","l":"Engine"},{"p":"ryan","l":"Hanoi"},{"p":"main","l":"JavaTerminalArcade"},{"p":"ryan","l":"Minesweeper"},{"p":"ava","l":"Snake"},{"p":"ryan","l":"StackSet"},{"p":"mattie","l":"Tetris"}]
