@@ -1,6 +1,9 @@
 # JavaTerminalGames
 a terminal based java app that plays some games in the terminal
 
+## status
+[![Build Docs](https://github.com/mattieFM/JavaTerminalGames/actions/workflows/static.yml/badge.svg)](https://github.com/mattieFM/JavaTerminalGames/actions/workflows/static.yml)
+
 # installation instructions 
 To run simply clone this repo and then run:
 java -jar ./arcade.jar
