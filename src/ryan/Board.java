@@ -1,4 +1,5 @@
 package ryan;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import biz.source_code.utils.RawConsoleInput;
@@ -22,8 +23,8 @@ public class Board {
 	private final char square;
 
 	// Take the difficulty level as an argument
-	public Board(int level) {
-
+	public Board(int level) throws FileNotFoundException {
+		Engine.loadConfig();
 		this.difficulty = level;
 		mines = 10;
 		// Based on the difficulty level, generate a different size board with a
@@ -327,52 +328,52 @@ public class Board {
 	private boolean userInput(int value) {
 		boolean safe = true;
 		boolean printBoard = true;
-		switch (value) {
-		// Up arrow
-		case 57416:
-			if (cursorY > 0) {
-				cursorY--;
-			}
-			break;
-		// Right arrow
-		case 57421:
-			if (cursorX < xMax) {
-				cursorX++;
-			}
-			break;
-		// Down arrow
-		case 57424:
-			if (cursorY < yMax) {
-				cursorY++;
-			}
-			break;
-		// Left arrow
-		case 57419:
+		
+		if(Engine.LEFT_CHARS.contains(value)) {
+			//left char
 			if (cursorX > 0) {
 				cursorX--;
 			}
-			break;
-		// F
-		case 70:
-			placeFlag(cursorY, cursorX);
-			break;
-		// R
-		case 82:
-			removeFlag(cursorY, cursorX);
-			break;
-		// Space
-		case 32:
-			safe = makeMove(cursorY, cursorX);
-			break;
-		// Q
-		case 81:
+		} else if(Engine.RIGHT_CHARS.contains(value)) {
+			//right char
+			if (cursorX < xMax) {
+				cursorX++;
+			}
+		} else if(Engine.UP_CHARS.contains(value)) {
+			//up char
+			if (cursorY > 0) {
+				cursorY--;
+			}
+		} else if(Engine.DOWN_CHARS.contains(value)) {
+			//down char
+			if (cursorY < yMax) {
+				cursorY++;
+			}
+		} else if(Engine.EXIT_CHARS.contains(value)) {
+			//exit char
 			safe = false;
 			printBoard = false;
 			// For all other characters, do not print the game board, since there is no
 			// board update to be done
-		default:
-			printBoard = false;
+		} else {
+			switch (value) {
+			// F
+			case 70:
+				placeFlag(cursorY, cursorX);
+				break;
+			// R
+			case 82:
+				removeFlag(cursorY, cursorX);
+				break;
+			// Space
+			case 32:
+				safe = makeMove(cursorY, cursorX);
+				break;
+			default:
+				printBoard = false;
+			}
 		}
+		
 		// If a board update is needed, print the game board
 		if (safe && printBoard) {
 			clearScreen();
